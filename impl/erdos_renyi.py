@@ -20,7 +20,10 @@ def erdos_renyi(v: int, e: int) -> ig.Graph:
                 edges.append((src, dst))
 
     g.add_edges(edges)
-    logger.info("Create ER graph on {:d} vertexes with {:d} edges.".format(
-        g.vcount(), g.ecount()))
+    logger.info(
+        "Create ER graph on {:d} vertexes with {:d} edges.".format(
+            g.vcount(), g.ecount()
+        )
+    )
 
     return g

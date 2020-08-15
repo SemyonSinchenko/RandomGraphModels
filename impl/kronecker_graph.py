@@ -28,7 +28,10 @@ def kronecker_graph(v: int, density: float) -> ig.Graph:
     edge_list = zip(nonzero[0], nonzero[1])
 
     g = ig.Graph(n=adjacency.shape[0], edges=edge_list)
-    logger.info("Create KGM graph on {:d} vertexes with {:d} edges.".format(
-        g.vcount(), g.ecount()))
+    logger.info(
+        "Create KGM graph on {:d} vertexes with {:d} edges.".format(
+            g.vcount(), g.ecount()
+        )
+    )
 
     return g

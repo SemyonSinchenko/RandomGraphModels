@@ -47,20 +47,19 @@ def _plot_degree_distribution(g: ig.Graph, path_prefix: Path) -> None:
         log_cnt[i] = np.log(kv[1])
 
     # Fit linear regression
-    solution = np.polyfit(log_deg[log_cnt > 1.5],
-                          log_cnt[log_cnt > 1.5],
-                          deg=1)
+    solution = np.polyfit(log_deg[log_cnt > 1.5], log_cnt[log_cnt > 1.5], deg=1)
 
     # Plot distributions
     plt.style.use("ggplot")
     f: plt.Figure = plt.Figure(figsize=(8, 5), dpi=150)
     ax: plt.Axes = f.add_subplot()
     ax.plot(log_deg, log_cnt, ".", label="Real Degrees")
-    ax.plot(log_deg,
-            log_deg * solution[0] + solution[1],
-            "-",
-            label="Linear fit: {:.4f}x + {:.2f}".format(
-                solution[0], solution[1]))
+    ax.plot(
+        log_deg,
+        log_deg * solution[0] + solution[1],
+        "-",
+        label="Linear fit: {:.4f}x + {:.2f}".format(solution[0], solution[1]),
+    )
     ax.legend()
     ax.set_xlabel("Log degree")
     ax.set_ylabel("Log count degrees")
@@ -84,10 +83,9 @@ def _plot_clustering_coeff(g: ig.Graph, path_prefix: Path) -> None:
     plt.style.use("ggplot")
     f: plt.Figure = plt.Figure(figsize=(8, 5), dpi=150)
     ax: plt.Axes = f.add_subplot()
-    ax.plot(degrees,
-            lcc,
-            ".",
-            label="ClustCoeff. Avg = {:.2e}".format(avg_clustering_coeff))
+    ax.plot(
+        degrees, lcc, ".", label="ClustCoeff. Avg = {:.2e}".format(avg_clustering_coeff)
+    )
     ax.legend()
     ax.set_xlabel("Degree")
     ax.set_ylabel("Avg Clustering of Degree")
@@ -111,11 +109,12 @@ def _plot_shortest_paths(g: ig.Graph, path_prefix: Path) -> None:
     plt.style.use("ggplot")
     f: plt.Figure = plt.Figure(figsize=(8, 5), dpi=150)
     ax: plt.Axes = f.add_subplot()
-    ax.plot(cnts.keys(),
-            cnts.values(),
-            ".",
-            label="Path.Len.Distr.\nDiam.: {:d}\nEff.Diam.: {:.2f}".format(
-                diam, eff_diam))
+    ax.plot(
+        cnts.keys(),
+        cnts.values(),
+        ".",
+        label="Path.Len.Distr.\nDiam.: {:d}\nEff.Diam.: {:.2f}".format(diam, eff_diam),
+    )
     ax.legend()
     ax.set_xlabel("Path. length")
     ax.set_ylabel("Count paths")
@@ -161,11 +160,14 @@ def _plot_degrees_correlations(g: ig.Graph, path_prefix: Path) -> None:
     ax: plt.Axes = f.add_subplot()
 
     ax.plot(corrs[:, 0], corrs[:, 1], ".", label="Real data")
-    ax.plot(corrs[np.argsort(corrs[:, 0]), 0],
-            corrs[np.argsort(corrs[:, 0]), 0] * solution[0] + solution[1],
-            "-",
-            label="Fitted line: {:2f}x + {:2f}\nAssortativity coeff.: {:.3f}".format(solution[0],
-                                                       solution[1], assortativity))
+    ax.plot(
+        corrs[np.argsort(corrs[:, 0]), 0],
+        corrs[np.argsort(corrs[:, 0]), 0] * solution[0] + solution[1],
+        "-",
+        label="Fitted line: {:2f}x + {:2f}\nAssortativity coeff.: {:.3f}".format(
+            solution[0], solution[1], assortativity
+        ),
+    )
 
     ax.legend()
     ax.set_xlabel("Node degree")

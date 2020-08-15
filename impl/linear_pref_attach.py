@@ -28,17 +28,23 @@ def linear_pref_attach(v: int, e: int, alpha: float) -> ig.Graph:
 
         for _ in range(num_edges):
             dst = np.argmax(
-                np.random.multinomial(1,
-                                      pvals=(probs + alpha * (probs > 0.0)) /
-                                      (probs + alpha * (probs > 0.0)).sum(),
-                                      size=1))
+                np.random.multinomial(
+                    1,
+                    pvals=(probs + alpha * (probs > 0.0))
+                    / (probs + alpha * (probs > 0.0)).sum(),
+                    size=1,
+                )
+            )
 
             probs[src] += 1
             probs[dst] += 1
             edges.append((src, dst))
 
     g.add_edges(edges)
-    logger.info("Create LPA graph on {:d} vertexes with {:d} edges.".format(
-        g.vcount(), g.ecount()))
+    logger.info(
+        "Create LPA graph on {:d} vertexes with {:d} edges.".format(
+            g.vcount(), g.ecount()
+        )
+    )
 
     return g

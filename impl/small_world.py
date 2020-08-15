@@ -47,7 +47,10 @@ def small_world(v: int, e: int, beta: float) -> ig.Graph:
             d += 1
 
     g.add_edges(edges)
-    logger.info("Create SW graph on {:d} vertexes with {:d} edges.".format(
-        g.vcount(), g.ecount()))
+    logger.info(
+        "Create SW graph on {:d} vertexes with {:d} edges.".format(
+            g.vcount(), g.ecount()
+        )
+    )
 
     return g

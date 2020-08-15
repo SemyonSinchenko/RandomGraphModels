@@ -31,7 +31,10 @@ def copy_model(v: int, alpha: float) -> ig.Graph:
             g.delete_vertices(n.index)
         else:
             g.add_edges(edges)
-    logger.info("Create DD graph on {:d} vertexes with {:d} edges.".format(
-        g.vcount(), g.ecount()))
+    logger.info(
+        "Create DD graph on {:d} vertexes with {:d} edges.".format(
+            g.vcount(), g.ecount()
+        )
+    )
 
     return g
